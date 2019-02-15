@@ -1,0 +1,142 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "f97e9950-215e-4c82-812e-6d4e754b955b": {
+        "id": "f97e9950-215e-4c82-812e-6d4e754b955b",
+        "parent": null,
+        "name": "TestSQSTrigger",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "4dc64189-a0d6-48eb-9efd-16721c58951b"
+        ],
+        "isRemovable": false,
+        "filePath": "TestSQSTrigger"
+      },
+      "4dc64189-a0d6-48eb-9efd-16721c58951b": {
+        "id": "4dc64189-a0d6-48eb-9efd-16721c58951b",
+        "parent": "f97e9950-215e-4c82-812e-6d4e754b955b",
+        "name": "lambda.js",
+        "type": "LAMBDA_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "TestSQSTrigger/lambda.js",
+        "code": "exports.handler = function(event, context, callback) {\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "triggers": [
+          {
+            "resourceName": "sqsnew",
+            "config": {
+              "BatchSize": "10"
+            }
+          }
+        ],
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "testCases": {
+          "a1e421a5-0835-4ffc-a1dc-5db78233557d": {
+            "id": "a1e421a5-0835-4ffc-a1dc-5db78233557d",
+            "name": "Unnamed event",
+            "functionId": "4dc64189-a0d6-48eb-9efd-16721c58951b",
+            "event": "{\n    \"key1\": \"v1\",\n    \"key2\": \"v2\",\n    \"key3\": \"v3\"\n}"
+          }
+        }
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "f97e9950-215e-4c82-812e-6d4e754b955b",
+    "openFiles": [
+      "4dc64189-a0d6-48eb-9efd-16721c58951b"
+    ],
+    "currentFileId": "4dc64189-a0d6-48eb-9efd-16721c58951b",
+    "resources": {
+      "sqsanomalyDetectionQueue": {
+        "name": "sqsanomalyDetectionQueue",
+        "type": "SQS",
+        "config": {
+          "mode": 1,
+          "existing": true,
+          "name": "anomalyDetectionQueue",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/anomalyDetectionQueue",
+          "selectedRegion": "us-east-1",
+          "deliveryDelay": "0",
+          "deliveryDelayUnit": "seconds",
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": "30",
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": "345600",
+          "messageRetentionPeriodUnit": "seconds",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": "0",
+          "queueARN": "arn:aws:sqs:us-east-1:318300609668:anomalyDetectionQueue"
+        },
+        "globallyEditable": false
+      },
+      "sqsnew": {
+        "name": "sqsnew",
+        "type": "SQS",
+        "config": {
+          "mode": 0,
+          "existing": false,
+          "name": "new",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/new",
+          "selectedRegion": "us-east-1",
+          "deliveryDelay": 0,
+          "deliveryDelayUnit": "seconds",
+          "useRedrivePolicy": false,
+          "useSSE": false,
+          "kmsCustomerMasterKey": "default",
+          "accountId": "318300609668",
+          "dataKeyReusePeriod": 5,
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": 30,
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": 4,
+          "messageRetentionPeriodUnit": "days",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": 0,
+          "deadLetterQueueName": ""
+        },
+        "globallyEditable": true
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": {}
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "TestSQSTrigger",
+    "projectDescription": "As a trigger",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1550212647530
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "TestSQSTrigger",
+      "url": "https://github.com/Kumudikatest/TestSQSTrigger"
+    }
+  }
+}
