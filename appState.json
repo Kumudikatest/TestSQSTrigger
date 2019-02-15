@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "TestSQSTrigger/lambda.js",
-        "code": "exports.handler = function(event, context, callback) {\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "code": "exports.handler = function(event, context, callback) {\n\n    callback(null, {\"message\": \"Successfully executed\"});\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
         "triggers": [
           {
             "resourceName": "sqsnew",
@@ -94,7 +94,7 @@
           "accountId": "318300609668",
           "dataKeyReusePeriod": 5,
           "queueType": "standardQueue",
-          "defaultVisibilityTimeout": 30,
+          "defaultVisibilityTimeout": "90",
           "defaultVisibilityTimeoutUnit": "seconds",
           "messageRetentionPeriod": 4,
           "messageRetentionPeriodUnit": "days",
@@ -130,7 +130,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1550212647530
+    "lastSave": 1550212789458
   },
   "VCS_STATE": {
     "provider": "GitHub",
