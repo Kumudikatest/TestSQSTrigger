@@ -22,12 +22,12 @@
         "children": [],
         "isRemovable": true,
         "filePath": "TestSQSTrigger/lambda.js",
-        "code": "exports.handler = function (event, context, callback) {\n    \n    callback(null, { \"message\": \"Successfully executed\" });\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+        "code": "exports.handler = function (event, context, callback) {\n\n    event.Records.forEach(({ messageId, body }) => {\n        console.log('SQS message %s: %j', messageId, body);\n    });\n    return `Successfully processed ${event.Records.length} messages.`;\n    \n};\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
         "triggers": [
           {
-            "resourceName": "sqstestQueuefifo",
+            "resourceName": "sqsanomalyDetectionQueue",
             "config": {
-              "BatchSize": 100
+              "BatchSize": "10"
             }
           }
         ],
@@ -55,25 +55,25 @@
     ],
     "currentFileId": "4dc64189-a0d6-48eb-9efd-16721c58951b",
     "resources": {
-      "sqstestQueuefifo": {
-        "name": "sqstestQueuefifo",
+      "sqsanomalyDetectionQueue": {
+        "name": "sqsanomalyDetectionQueue",
         "type": "SQS",
         "config": {
           "mode": 1,
           "existing": true,
-          "name": "test-queue.fifo",
-          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/test-queue.fifo",
+          "name": "anomalyDetectionQueue",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/anomalyDetectionQueue",
           "selectedRegion": "us-east-1",
           "deliveryDelay": "0",
           "deliveryDelayUnit": "seconds",
-          "queueType": "fifoQueue",
+          "queueType": "standardQueue",
           "defaultVisibilityTimeout": "30",
           "defaultVisibilityTimeoutUnit": "seconds",
           "messageRetentionPeriod": "345600",
           "messageRetentionPeriodUnit": "seconds",
           "maximumMessageSize": 256,
           "receiveMessageWaitTime": "0",
-          "queueARN": "arn:aws:sqs:us-east-1:318300609668:test-queue.fifo"
+          "queueARN": "arn:aws:sqs:us-east-1:318300609668:anomalyDetectionQueue"
         },
         "globallyEditable": false
       }
@@ -116,7 +116,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1550652673863
+    "lastSave": 1550659584656
   },
   "VCS_STATE": {
     "provider": "GitHub",
