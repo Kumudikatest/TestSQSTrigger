@@ -4,7 +4,6 @@ exports.handler = function (event, context, callback) {
         console.log('SQS message %s: %j', messageId, body);
     });
     return `Successfully processed ${event.Records.length} messages.`;
-    
 };
 
 

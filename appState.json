@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "TestSQSTrigger/lambda.js",
-        "code": "exports.handler = function (event, context, callback) {\n\n    event.Records.forEach(({ messageId, body }) => {\n        console.log('SQS message %s: %j', messageId, body);\n    });\n    return `Successfully processed ${event.Records.length} messages.`;\n    \n};\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+        "code": "exports.handler = function (event, context, callback) {\n\n    event.Records.forEach(({ messageId, body }) => {\n        console.log('SQS message %s: %j', messageId, body);\n    });\n    return `Successfully processed ${event.Records.length} messages.`;\n};\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
         "triggers": [
           {
             "resourceName": "sqsanomalyDetectionQueue",
@@ -116,7 +116,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1550659584656
+    "lastSave": 1550660312211
   },
   "VCS_STATE": {
     "provider": "GitHub",
