@@ -22,8 +22,15 @@
         "children": [],
         "isRemovable": true,
         "filePath": "TestSQSTrigger/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nlet SL_AWS = require('slappforge-sdk-aws');\nconst sqs = new SL_AWS.SQS(AWS);\n\nexports.handler = function (event, context, callback) {\n    sqs.receiveMessage({\n        QueueUrl: `https://sqs.${process.env.AWS_REGION}.amazonaws.com/${process.env.SIGMA_AWS_ACC_ID}/anomalyDetectionQueue`,\n        AttributeNames: ['All'],\n        MaxNumberOfMessages: '1',\n        VisibilityTimeout: '30',\n        WaitTimeSeconds: '0'\n    }).promise()\n        .then(receivedMsgData => {\n            if (!!(receivedMsgData) && !!(receivedMsgData.Messages)) {\n                let receivedMessages = receivedMsgData.Messages;\n                receivedMessages.forEach(message => {\n                    // your logic to access each message through out the loop. Each message is available under variable message \n                    // within this block\n                });\n            } else {\n                // No messages to process\n            }\n        })\n        .catch(err => {\n            // error handling goes here\n        });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
-        "triggers": [],
+        "code": "exports.handler = function (event, context, callback) {\n    \n    callback(null, { \"message\": \"Successfully executed\" });\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+        "triggers": [
+          {
+            "resourceName": "sqstestQueuefifo",
+            "config": {
+              "BatchSize": 100
+            }
+          }
+        ],
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -48,55 +55,27 @@
     ],
     "currentFileId": "4dc64189-a0d6-48eb-9efd-16721c58951b",
     "resources": {
-      "sqsanomalyDetectionQueue": {
-        "name": "sqsanomalyDetectionQueue",
+      "sqstestQueuefifo": {
+        "name": "sqstestQueuefifo",
         "type": "SQS",
         "config": {
           "mode": 1,
           "existing": true,
-          "name": "anomalyDetectionQueue",
-          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/anomalyDetectionQueue",
+          "name": "test-queue.fifo",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/test-queue.fifo",
           "selectedRegion": "us-east-1",
           "deliveryDelay": "0",
           "deliveryDelayUnit": "seconds",
-          "queueType": "standardQueue",
+          "queueType": "fifoQueue",
           "defaultVisibilityTimeout": "30",
           "defaultVisibilityTimeoutUnit": "seconds",
           "messageRetentionPeriod": "345600",
           "messageRetentionPeriodUnit": "seconds",
           "maximumMessageSize": 256,
           "receiveMessageWaitTime": "0",
-          "queueARN": "arn:aws:sqs:us-east-1:318300609668:anomalyDetectionQueue"
+          "queueARN": "arn:aws:sqs:us-east-1:318300609668:test-queue.fifo"
         },
         "globallyEditable": false
-      },
-      "sqsnew": {
-        "name": "sqsnew",
-        "type": "SQS",
-        "config": {
-          "mode": 0,
-          "existing": true,
-          "name": "new",
-          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/new",
-          "selectedRegion": "us-east-1",
-          "deliveryDelay": 0,
-          "deliveryDelayUnit": "seconds",
-          "useRedrivePolicy": false,
-          "useSSE": false,
-          "kmsCustomerMasterKey": "default",
-          "accountId": "318300609668",
-          "dataKeyReusePeriod": 5,
-          "queueType": "standardQueue",
-          "defaultVisibilityTimeout": "90",
-          "defaultVisibilityTimeoutUnit": "seconds",
-          "messageRetentionPeriod": 4,
-          "messageRetentionPeriodUnit": "days",
-          "maximumMessageSize": 256,
-          "receiveMessageWaitTime": 0,
-          "deadLetterQueueName": "",
-          "createdByApp": true
-        },
-        "globallyEditable": true
       }
     },
     "customTemplate": {
@@ -137,7 +116,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1550213066533
+    "lastSave": 1550652620237
   },
   "VCS_STATE": {
     "provider": "GitHub",
